@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function addTask(title) {
         try {
-            const response = await fetch('http://127.0.0.1:8000/todo/todos/', {
+            const response = await fetch('http://127.0.0.1:7777/todo/todos/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadTasks() {
         try {
-            const response = await fetch('http://127.0.0.1:8000/todo/todos/');
+            const response = await fetch('http://127.0.0.1:7777/todo/todos/');
             const tasks = await response.json();
             renderTasks(tasks);
         } catch (error) {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function deleteTask(id) {
         try {
-            const response = await fetch(`http://127.0.0.1:8000/todo/todos/${id}`,
+            const response = await fetch(`http://127.0.0.1:7777/todo/todos/${id}`,
             {
                 method: 'DELETE',
                 headers: {

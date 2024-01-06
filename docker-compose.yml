@@ -1,0 +1,38 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:15
+    container_name: todo_bd
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    env_file:
+      - .env-compose
+    ports:
+      - 5432:5432
+
+  todo:
+    image: todo_app
+    build:
+      context: .
+    container_name: todo_app
+    env_file:
+      - .env-compose
+    depends_on:
+      - db
+    command: ["sh", "-c", "sleep 10 && /todo/app.sh"]
+    ports:
+      - 7777:8000
+
+  prometheus:
+    image: prom/prometheus:v2.43.0
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheusdata:/prometheus
+    restart: unless-stopped
+    ports:
+      - 9090:9090
+
+volumes:
+  postgresdata:
+  prometheusdata:
