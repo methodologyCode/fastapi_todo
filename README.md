@@ -32,4 +32,12 @@
 - В корне проекта uvicorn main:app --reload
 ```
 
+### Запуск с помощью docker
+```
+- sudo docker compose build (Из главной папки)
+- sudo docker compose up(Из главной папки)
+- Поднимутся 3 контейнера: ToDo, PostgreSQL, Prometheus
+- Не забываем про файлы .env(Для локального использования) и .env-compose(Для докера)
+```
+
 
